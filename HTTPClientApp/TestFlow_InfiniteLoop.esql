@@ -1,0 +1,15 @@
+
+
+CREATE COMPUTE MODULE TestFlow_InfiniteLoop
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputLocalEnvironment.Destination.HTTP.AllowInsecureConnections = TRUE;
+		
+		WHILE TRUE DO
+			PROPAGATE FINALIZE NONE DELETE NONE;
+			--SET Environment.abc = SLEEP(500);
+		END WHILE;
+		RETURN FALSE;
+	END;
+END MODULE;
