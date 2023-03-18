@@ -118,15 +118,21 @@ public class ClientJavaCompute extends MbJavaComputeNode {
 	   	}
 	}
 
+
 	/**
-	 * onStart() is called as the message flow is started. The thread pool for
-	 * the message flow is running when this method is invoked.
+	 * onSetup() is called during the start of the message flow allowing
+	 * configuration to be read/cached, and endpoints to be registered.
+	 *
+	 * Calling getPolicy() within this method to retrieve a policy links this
+	 * node to the policy. If the policy is subsequently redeployed the message
+	 * flow will be torn down and reinitialized to it's state prior to the policy
+	 * redeploy.
 	 *
 	 * @throws MbException
 	 */
 	@Override
-	public void onStart() throws MbException {
-		System.out.println("onStart() called for "+getMessageFlow().getName());
+	public void onSetup() throws MbException {
+		System.out.println("onSetup() called for "+getMessageFlow().getName());
 
 		pt = new PrintingThread(getMessageFlow().getName());
 		pt.start(); 

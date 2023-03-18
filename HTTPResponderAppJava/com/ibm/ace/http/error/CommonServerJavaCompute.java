@@ -114,8 +114,8 @@ public class CommonServerJavaCompute extends MbJavaComputeNode {
 		
 		if ( wait == false )
 		{
-			System.out.println("Sleeping for 250ms to give clients a chance to get 404 status codes");
-			try { Thread.sleep(250); } 
+			System.out.println("Sleeping for 10000ms to give clients a chance to get 404 status codes");
+			try { Thread.sleep(10000); } 
 			catch (InterruptedException e) { e.printStackTrace(); }
 		}
 	}
